@@ -18,7 +18,7 @@ function doSearch() {
   if (city === '')
     return;
 
-  fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${APIKey}`).then((response) => response.json()).then(json => {
+  fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&units=imperial&appid=${APIKey}`).then((response) => response.json()).then(json => {
 
     if (json.cod === '404') {
       container.style.height = '400px';
@@ -61,10 +61,10 @@ function doSearch() {
 
     }
 
-    temperature.innerHTML = `${parseInt(json.main.temp)}<span>°C</span>`;
+    temperature.innerHTML = `${parseInt(json.main.temp)}<span>°F</span>`;
     description.innerHTML = `${json.weather[0].description}<span>`;
     humidity.innerHTML = `${json.main.humidity}%`;
-    wind.innerHTML = `${parseInt(json.wind.speed)}Km/h`;
+    wind.innerHTML = `${parseInt(json.wind.speed)}mph`;
 
     weatherBox.style.display = '';
     weatherDetails.style.display = '';
